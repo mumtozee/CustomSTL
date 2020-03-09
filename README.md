@@ -1,4 +1,4 @@
-# MSTL_custom
+# MySTL
 Simple implementations of STL data structures and algorithms.
 
 Includes:
