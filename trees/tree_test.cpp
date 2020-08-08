@@ -1,3 +1,4 @@
+#include "AVLTree.h"
 #include "BST.h"
 #include "RedBlackTree.h"
 
@@ -34,7 +35,7 @@ private:
 };
 
 int main() {
-    const size_t kSize = 1 << 22;
+    const size_t kSize = 1 << 20;
     const int kSeed = INT_MAX;
 
     std::mt19937 generator(std::random_device{}());
@@ -42,6 +43,7 @@ int main() {
 
     BST<int> bstree;
     RedBlackTree<int> rbtree;
+    AVLTree<int> avl;
 
     {
         TimeProfiler profiler1("naive Binary Search Tree test");
@@ -64,6 +66,18 @@ int main() {
 
         for (size_t i = 0; i < kSize; ++i) {
             rbtree.Delete(distr(generator));
+        }
+    }
+
+    {
+        TimeProfiler profiler3("AVL Tree test");
+
+        for (size_t i = 0; i < kSize; ++i) {
+            avl.Insert(distr(generator));
+        }
+
+        for (size_t i = 0; i < kSize; ++i) {
+            avl.Delete(distr(generator));
         }
     }
 
