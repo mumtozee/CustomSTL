@@ -1,6 +1,7 @@
 #include "AVLTree.h"
 #include "BST.h"
 #include "RedBlackTree.h"
+#include "Treap.h"
 
 #include <chrono>
 #include <climits>
@@ -35,7 +36,7 @@ private:
 };
 
 int main() {
-    const size_t kSize = 1 << 20;
+    const size_t kSize = 1 << 10;
     const int kSeed = INT_MAX;
 
     std::mt19937 generator(std::random_device{}());
@@ -44,8 +45,9 @@ int main() {
     BST<int> bstree;
     RedBlackTree<int> rbtree;
     AVLTree<int> avl;
+    Treap<int> treap;
 
-    {
+    /*{
         TimeProfiler profiler1("naive Binary Search Tree test");
 
         for (size_t i = 0; i < kSize; ++i) {
@@ -78,6 +80,17 @@ int main() {
 
         for (size_t i = 0; i < kSize; ++i) {
             avl.Delete(distr(generator));
+        }
+    }*/
+
+    {
+        TimeProfiler profile;
+        for (size_t i = 0; i < kSize; ++i) {
+            treap.Insert(distr(generator));
+        }
+
+        for (size_t i = 0; i < kSize; ++i) {
+            treap.Delete(distr(generator));
         }
     }
 
