@@ -1,1 +1,1 @@
-# MIPT Data Structres And Algorithms course code
+# My attempt to recreate C++ STL
